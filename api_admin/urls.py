@@ -33,7 +33,6 @@ urlpatterns=[
     path("forgot-password/",ForgotPasswordView.as_view(),name='forgot-password'),
 
 
-
     path( "list/",allView.as_view(),name='user-view'),
 
 
@@ -63,6 +62,8 @@ urlpatterns=[
 
 # --------------------------------------- SPECTO V2----------------------------------
 
+#----------------------------------------------ADD---------------------------------------------------
+
     path('add-client/', AddCustomer.as_view(), name='add-customer'),
     path('get-customer/', GetAllCustomer.as_view(), name='get-customer'),
     path('get-customer-id/<int:client_id>/', GetCustomerById.as_view(), name='get-customer-id'),
@@ -77,11 +78,24 @@ urlpatterns=[
     path('backup-generate-details/', BackupGeneratorView.as_view(), name='backup-generate-details'),
     path('miscellaneous-details/', MiscellaneousDetailsView.as_view(), name='miscellaneous-details'),
 
+#----------------------------------------------GET----------------------------------------------------
 
+    path('get-project-name/<str:name>/', GetProjectNameView.as_view(), name='get-project-name'),
+    path('get-roof-name/<str:name>/', GetRoofView.as_view(), name='get-roof-name'),
+    path('get-room-name/<str:name>/', GetRoomView.as_view(), name='get-room-name'),
+    path('get-sitephotos-name/<str:name>/', GetSitePhotosView.as_view(), name='get-sitephotos-name'),
+    path('get-equipment-name/<str:name>/', GetEquipmentView.as_view(), name='get-equipment-name'),
+    path('get-electrical-name/<str:name>/', GetElectricalView.as_view(), name='get-electrical-name'),
+    path('get-backup-name/<str:name>/', GetBackupView.as_view(), name='get-backup-name'),
+    path('get-miscellaneous-name/<str:name>/', GetMiscellaneousView.as_view(), name='get-miscellaneous-name'),
 
+#-------------------------------------------------PUT-----------------------------------------------------
 
+    # path('put-project/<str:name>/', AddProject.as_view(), name='put-project'),
     # path('list-client/<int:client_id>', ListClient.as_view(), name='list-client'),
 
+#-------------------------------------------------DELETE--------------------------------------------------
 
+    path('delete-room/<str:name>/', DeleteRoomViews.as_view(), name='delete')
 
 ]

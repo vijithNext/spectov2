@@ -150,6 +150,7 @@ class DefaultAttachmentSerializer(serializers.ModelSerializer):
 
 ############################# ########################### ############################ #############################
 
+#------------------- septov2 -------------------
 
 class AddCustomerSerializer(serializers.ModelSerializer):
 
@@ -178,7 +179,8 @@ class RoofSerializer(serializers.ModelSerializer):
         model = Roof
         fields = [
                     'client_id',
-                    'project',
+                    'name',
+                    'project_name',
                     'field1',
                     'field2',
                     'field3',
@@ -192,6 +194,8 @@ class RoomSerializer(serializers.ModelSerializer):
         model = Room
         fields = [
                     'client_id',
+                    'name',
+                    'project_name'
                     'create_room',
                     'images',
                     'equipments',
@@ -206,6 +210,8 @@ class SitePhotosSerializer(serializers.ModelSerializer):
         model = SitePhotos
         fields = [
                     'client_id',
+                    'name',
+                    'project_name'
                     'fount_of_building',
                     'array',
                     'meter_close_up',
@@ -224,6 +230,8 @@ class AddEquipmentSerializer(serializers.ModelSerializer):
         model = Add_Equipments_and_working_details
         fields = [
                     'client_id',
+                    'name',
+                    'project_name'
                     'inverter_mounting_type',
                     'ventilated_room',
                     'dc_cable_run_in_m',
@@ -239,6 +247,8 @@ class AddElecticalConnectionSerializer(serializers.ModelSerializer):
         model = Add_Electrical_connection_details
         fields = [
                     'client_id',
+                    'name',
+                    'project_name'
                     'Electricity_provider',
                     'sc_no',
                     'capture_connection_no',
@@ -262,6 +272,8 @@ class BackupGeneratorSerializer(serializers.ModelSerializer):
         model = Add_Backup_Generator_details
         fields = [
                     'client_id',
+                    'name',
+                    'project_name'
                     'is_backup_generate_available',
                     'make',
                     'capacity_in_KVA',
@@ -277,6 +289,8 @@ class MiscellaneousDetailsSerializer(serializers.ModelSerializer):
         model = Miscellaneous_Details
         fields = [
                     'client_id',
+                    'name',
+                    'project_name'
                     'earthing_pit_visibility',
                     'details',
                     'easy_access_to_roof',
@@ -293,16 +307,5 @@ class MiscellaneousDetailsSerializer(serializers.ModelSerializer):
                     'details'
                 ]
 
-# class AllClient(serializers.ModelSerializer):
+#-----------------------------------------------------------------------------------------------------------------------------------
 
-#     name = 
-
-#     class Meta:
-#         model = Client
-#         fields = (
-#             'client_id', 'name', 'email', 'phone', 'project', 'field1', 'field2', 'field3'
-#         )
-    
-#     def get_client(self, obj):
-#         client_list = Project.objects.get()
-#         return client_list

@@ -5,62 +5,6 @@ from django.urls import path
 
 
 urlpatterns=[
-    
-    path( "registration/",RegisterViews.as_view(),name = 'register'),
-              # declares the name of api end points
-    path("login/",UserLoginViews.as_view(),name='login'),
-
-    path( "imageupload/",ImageUploadView.as_view(),name = 'image'),
-
-    path( "alllabour/",usesview.as_view(),name = 'image'), 
-
-    path( "imagelist/",Imagelist.as_view(),name = 'image'), 
-   
-    path( "fileupload/",AttachmentView.as_view(),name = 'fileupload'),
-
-    path( "fileall/<str:name>/",fileview.as_view(),name = 'fileupload'),
-
-    path( "fileall/",fileview.as_view(),name = 'fileall'),
-
-    path( "defaultfile/",defaultFilesView.as_view(),name = 'defaultfile'),
-    
-    path( "defaultall/",defaultallview.as_view(),name = 'default'),
-    
-   #  path('payment/',PaymentView.as_view(),name="payment"),
-    # path('token/',TokenObjectView.as_view(),name="payment"),
-
-
-    path("forgot-password/",ForgotPasswordView.as_view(),name='forgot-password'),
-
-
-    path( "list/",allView.as_view(),name='user-view'),
-
-
-    path('allleavelist/', stdentleaveview.as_view(), name='leave-list'),
-
-    path('leavelist/<str:labour_id>/', studentsleaveview.as_view(), name='leave-list'),
-
-    path('leaveresponse/', studentleaveresponseview.as_view(), name='leave-list'),
-
-    path('change-password/', ChangePasswordView.as_view(), name='change-password'),
-
-
-    path( "user-add/",userView.as_view(),name='user-add'),
-
-    # path( "user-add/",userView.as_view(),name='user-add'),
-
-    path("user-add/<slug:slug>/",userView.as_view(),name='user-view'),
-
-    path( "user-list/",userListView.as_view(),name='user-view'),
-
-    #----------------------------------------------------------------------------------
-
-    # path("dayactivity/<str:labour_id>/",dayactivityView.as_view(), name='dayactivity')
-
-    #-----------------------------------------------------------------------------------
-
-
-# --------------------------------------- SPECTO V2----------------------------------
 
 #----------------------------------------------ADD---------------------------------------------------
 
@@ -89,12 +33,7 @@ urlpatterns=[
     path('get-backup-name/<str:name>/', GetBackupView.as_view(), name='get-backup-name'),
     path('get-miscellaneous-name/<str:name>/', GetMiscellaneousView.as_view(), name='get-miscellaneous-name'),
 
-#-------------------------------------------------PUT-----------------------------------------------------
-
-    # path('put-project/<str:name>/', AddProject.as_view(), name='put-project'),
-    # path('list-client/<int:client_id>', ListClient.as_view(), name='list-client'),
-
-#-------------------------------------------------DELETE--------------------------------------------------
+#---------------------------------------------DELETE--------------------------------------------------
 
     path('delete-room/<str:name>/', DeleteRoomViews.as_view(), name='delete')
 

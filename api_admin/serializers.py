@@ -1,154 +1,8 @@
-import re
-from typing import ClassVar
-from django.db import models
-from django.db.models import fields
-from django.db.models.base import Model
-from rest_framework import serializers                       
-from django.contrib.auth import authenticate                 # use to declare auth model type
-from rest_framework import status                            # uses to get status response message
-from.models import Client, Project, Registration, Labour, Roof, Room, SitePhotos                              # calls declared class name from the models            
-from rest_framework.authtoken.models import Token            # uses while generate token
-from api_admin.models import Labour, Miscellaneous_Details, Registration, ImageUpload, DefaultFiles, Ticket, Attachment, Client, Room, Roof, SitePhotos, Add_Equipments_and_working_details, Add_Electrical_connection_details, Add_Backup_Generator_details
+from rest_framework import serializers                                     
+from.models import Client, Project, Roof, Room, SitePhotos       
+from api_admin.models import Miscellaneous_Details,Client, Room, Roof, SitePhotos, Add_Equipments_and_working_details, Add_Electrical_connection_details, Add_Backup_Generator_details
 from webroot.utilities import*
 #import base64
-
-
-class RegisterSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Registration
-        fields = [
-                    'id',
-                    'email',
-                    'dup_password',
-                    'name',
-                    'mobile_number',
-                    'status',
-                    'created_at',
-                    'updated_at'
-                   
-                
-                    
-                ]
-        read_only_fields = [
-                            'status',
-                            'dup_password',
-                            'created_at',
-                            'updated_at'
-                            ]
-
-    def create(self,validated_data):
-
-        user = Registration.objects.create_user(                          
-        email           =   validated_data['email'],
-        password        =   Password_Generator(),
-        name            =   validated_data['name'],
-        mobile_number   =   validated_data['mobile_number']
-
-    )
-
-        return user
-
-###################################################*/ LOGIN */###########################################################
-
-class UserLoginSerializer(serializers.Serializer):
-
-    email = serializers.EmailField()
-    password = serializers.CharField(max_length=255)
-
-    def validate(self,data):
-        email = data.get('email')
-        password = data.get('password')
-        if email and password:
-            user=Registration.objects.filter(email=email).first()
-            
-        if (user.check_password(password)==True):
-            token,created = Token.objects.get_or_create(user = user)
-            data['token'] = token.key
-        
-        return data
-class ImageUploadSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = ImageUpload
-        fields = [
-            'id',
-            'image',
-            'status',
-            'created_at',
-            'updated_at'
-        ]
-
-        read_only_fields = [
-            'status',
-            'created_at',
-            'updated_at'
-        ]
-
-
-class LabSerializer(serializers.ModelSerializer):
-    company_name = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Labour
-        fields = (
-            'login_user','name','department','slug','labour_id','mobile_number', 'email', 'dob', 'status', 'created_at', 'updated_at', 'company_name'
-            )
-
-    def get_company_name(self,obj):
-        company = Labour.objects.get(name=obj.name)
-        return company.company_name 
-
-
-class LeaveSerializer(serializers.ModelSerializer):
-    leavee = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Ticket
-        fields = ('labour_id', 'description', 'ticket_no', 'day_status', 'request_status', 'status', 'created_at', 'updated_at', 'description','leavee')
-    
-    def get_leavee(self,obj):
-        leave_view = Ticket.objects.get(id=obj.labour_id)
-        return leave_view.leavee
-
-
-class AttachmentSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Attachment
-        fields = [
-            'id',
-            'file_name',
-            'status',
-            'created_at',
-            'updated_at'
-        ]
-
-        read_only_fields = [
-            'status',
-            'created_at',
-            'updated_at'
-        ]
-class DefaultAttachmentSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = DefaultFiles
-        fields = [
-            'id',
-            'file_name',
-            'status',
-            'created_at',
-            'updated_at'
-        ]
-
-        read_only_fields = [
-            'status',
-            'created_at',
-            'updated_at'
-        ]
-
-
-############################# ########################### ############################ #############################
 
 #------------------- septov2 -------------------
 
@@ -159,8 +13,21 @@ class AddCustomerSerializer(serializers.ModelSerializer):
         fields = [
                     'client_id',
                     'name',
-                    'email',
-                    'phone'
+                    'contact_person',
+                    'email_1',
+                    'phone_number_1',
+                    'secondary_contact_person',
+                    'email_2',
+                    'phone_number_2',
+                    'address',
+                    'postal_code',
+                    'city',
+                    'province',
+                    'country',
+                    'lattitude',
+                    'longitude',
+                    'description',
+                    'selected_id'
                 ]
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -248,7 +115,7 @@ class AddElecticalConnectionSerializer(serializers.ModelSerializer):
         fields = [
                     'client_id',
                     'name',
-                    'project_name'
+                    # 'project_name'
                     'Electricity_provider',
                     'sc_no',
                     'capture_connection_no',

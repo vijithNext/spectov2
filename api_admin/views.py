@@ -10,35 +10,17 @@ from webroot.utilities import *
 from api_admin.config import *
 from django.shortcuts import get_object_or_404
 
-                                                                                    
-#######################################################################
+# ------------------------------------ SPECTO V2----------------------------------
 
-# ------------------------------------- SPECTO V2----------------------------------
 class AddCustomer(APIView):
 
     def post(self, request):
-        serializer = AddCustomerSerializer(data=request.data)
+        serializer = ClientSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+            return Response({"status":201, "message":"customer-created"})
         else:
             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
-
-class GetAllCustomer(APIView):
-    permission_classes = (AllowAny,)
-
-    def get(self, request, format=None):
-        customer = Client.objects.all()
-        serializer = AddCustomerSerializer(customer, many=True) 
-        return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
-
-class GetCustomerById(APIView):
-    permission_classes = (AllowAny,)
-
-    def get(self, request, client_id, format=None):
-        customer = Client.objects.filter(client_id=client_id)
-        serializer = AddCustomerSerializer(customer, many=True) 
-        return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
 
 class AddProject(APIView):
 
@@ -46,7 +28,7 @@ class AddProject(APIView):
         serializer = ProjectSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+            return Response({"status":201, "message":"project-created"})
         else:
             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
 
@@ -56,9 +38,19 @@ class AddRoof(APIView):
         serializer = RoofSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+            return Response({"status":201, "message":"roof-added"})
         else:
             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
+
+# class AddRoofImage(APIView):
+#     def post(self, request):
+#         serializer = RoofImageSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response({"status":201, "message":"roof-images-added"})
+#         else:
+#             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
+
 
 class AddRoom(APIView):
 
@@ -66,9 +58,18 @@ class AddRoom(APIView):
         serializer = RoomSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+            return Response({"status":201, "message":"room-created"})
         else:
             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
+
+# class AddRoomImage(APIView):
+#     def post(self, request):
+#         serializer = RoomImageSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response({"status":201, "message":"room-images-added"})
+#         else:
+#             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
 
 class SitePhotoView(APIView):
 
@@ -76,17 +77,26 @@ class SitePhotoView(APIView):
         serializer = SitePhotosSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+            return Response({"status":201, "message":"successfully-added"})
         else:
             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
+
+# class AddSiteImages(APIView):
+#     def post(self, request):
+#         serializer = SiteImageSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response({"status":201, "message":"room-images-added"})
+#         else:
+#             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
 
 class AddEquipmentView(APIView):
 
     def post(self, request):
-        serializer = AddEquipmentSerializer(data=request.data)
+        serializer = EquipmentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+            return Response({"status":201, "message":"successfully-added"})
         else:
             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
 
@@ -94,31 +104,41 @@ class AddEquipmentView(APIView):
 class AddElectricalConnectionView(APIView):
 
     def post(self, request):
-        serializer = AddElecticalConnectionSerializer(data=request.data)
+        serializer = ElecticalSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+            return Response({"status":201, "message":"successfully-added"})
         else:
             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
+
+
+# class AddElectricalImages(APIView):
+#     def post(self, request):
+#         serializer = ElectricalSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response({"status":201, "message":"room-images-added"})
+#         else:
+#             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
 
 
 class BackupGeneratorView(APIView):
 
     def post(self, request):
-        serializer = BackupGeneratorSerializer(data=request.data)
+        serializer = BackupSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+            return Response({"status":201, "message":"successfully-added"})
         else:
             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
 
 class MiscellaneousDetailsView(APIView):
 
     def post(self, request):
-        serializer = MiscellaneousDetailsSerializer(data=request.data)
+        serializer = MiscellaneousSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+            return Response({"status":201, "message":"successfully-added"})
         else:
             return Response({"errors": serializer.errors, "code": status.HTTP_400_BAD_REQUEST, "message": "errors"})
 
@@ -126,6 +146,22 @@ class MiscellaneousDetailsView(APIView):
 #--------------------------------------------------------------------------------------------------------------------------------
 
 #get
+
+class GetAllCustomer(APIView):
+    permission_classes = (AllowAny,)
+
+    def get(self, request, format=None):
+        customer = Client.objects.all()
+        serializer = ClientSerializer(customer, many=True) 
+        return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+
+class GetCustomerById(APIView):
+    permission_classes = (AllowAny,)
+
+    def get(self, request, client_id, format=None):
+        customer = Client.objects.filter(client_id=client_id)
+        serializer = ClientSerializer(customer, many=True) 
+        return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
 
 class GetProjectNameView(APIView):
     permission_classes = (AllowAny,)
@@ -163,24 +199,24 @@ class GetEquipmentView(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request, name, format=None):
-        equipment = Add_Equipments_and_working_details.objects.filter(name=name)
-        serializer = AddEquipmentSerializer(equipment, many=True) 
+        equipment = Equipments_details.objects.filter(name=name)
+        serializer = EquipmentSerializer(equipment, many=True) 
         return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
 
 class GetElectricalView(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request, name, format=None):
-        electrical = Add_Electrical_connection_details.objects.filter(name=name)
-        serializer = AddElecticalConnectionSerializer(electrical, many=True) 
+        electrical = Electrical_details.objects.filter(name=name)
+        serializer = ElecticalSerializer(electrical, many=True) 
         return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
 
 class GetBackupView(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request, name, format=None):
-        backup = Add_Backup_Generator_details.objects.filter(name=name)
-        serializer = BackupGeneratorSerializer(backup, many=True) 
+        backup = Backup_details.objects.filter(name=name)
+        serializer = BackupSerializer(backup, many=True) 
         return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
 
 class GetMiscellaneousView(APIView):
@@ -188,12 +224,16 @@ class GetMiscellaneousView(APIView):
 
     def get(self, request, name, format=None):
         details = Miscellaneous_Details.objects.filter(name=name)
-        serializer = MiscellaneousDetailsSerializer(details, many=True) 
+        serializer = MiscellaneousSerializer(details, many=True) 
         return Response({"data": serializer.data, "code": status.HTTP_200_OK, "message": "OK"})
+
+#--------------------------------------------------------------------------------------------------
+
+#delete
 
 class DeleteRoomViews(APIView):
 
-    def delete(self, request, name):
-        item = get_object_or_404(Room, name=name)
+    def delete(self, request, client_id):
+        item = get_object_or_404(Room, client_id=client_id)
         item.delete()
         return Response({"status": "success", "data": "Item Deleted"})

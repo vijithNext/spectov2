@@ -8,7 +8,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/home/next/NEXT_Daily Task_API/_New_N3xt/training_collection_/_Spectov2_Complete_/_Spectov2_user_foreginkey_/env"
+setenv VIRTUAL_ENV "/home/next/_Next_Collections/_Spectov2_Final_Code/env"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"

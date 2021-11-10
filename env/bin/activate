@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/next/NEXT_Daily Task_API/_New_N3xt/training_collection_/_Spectov2_Complete_/_Spectov2_user_foreginkey_/env"
+VIRTUAL_ENV="/home/next/_Next_Collections/_Spectov2_Final_Code/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -1,4 +1,4 @@
-#!/home/next/NEXT_Daily Task_API/_New_N3xt/training_collection_/_Spectov2_Complete_/_Spectov2_user_foreginkey_/env/bin/python3
+#!/home/next/_Next_Collections/_Spectov2_Final_Code/env/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

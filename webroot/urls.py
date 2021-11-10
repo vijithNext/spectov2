@@ -17,5 +17,5 @@ from django.contrib import admin
 from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/',include('api_admin.urls')),
+    path('spectov2/',include('api_admin.urls')),
 ]

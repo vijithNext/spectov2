@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/next/NEXT_Daily Task_API/_New_N3xt/training_collection_/_Spectov2_Complete_/_Spectov2_user_foreginkey_/env"
+set -gx VIRTUAL_ENV "/home/next/_Next_Collections/_Spectov2_Final_Code/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

@@ -1,19 +1,19 @@
 from rest_framework import serializers                                     
 from.models import Client, Project, Roof, Room, SitePhotos       
-from api_admin.models import Miscellaneous_Details,Client, Room, Roof, SitePhotos, Add_Equipments_and_working_details, Add_Electrical_connection_details, Add_Backup_Generator_details
-from webroot.utilities import*
+from api_admin.models import * 
+from webroot.utilities import *
 #import base64
 
 #------------------- septov2 -------------------
 
-class AddCustomerSerializer(serializers.ModelSerializer):
+class ClientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Client
         fields = [
                     'client_id',
                     'name',
-                    'contact_person',
+                    'contact_person_name',
                     'email_1',
                     'phone_number_1',
                     'secondary_contact_person',
@@ -54,6 +54,15 @@ class RoofSerializer(serializers.ModelSerializer):
                     'images'
                 ]
 
+# class RoofImageSerializer(serializers.ModelSerializer):
+    
+#     class Meta:
+#         model = RoofImage
+#         fields = [
+#                     'client_id',
+#                     'images',
+#                 ]
+
 
 class RoomSerializer(serializers.ModelSerializer):
 
@@ -62,14 +71,23 @@ class RoomSerializer(serializers.ModelSerializer):
         fields = [
                     'client_id',
                     'name',
-                    'project_name'
+                    'project_name',
                     'create_room',
-                    'images',
+                    'room_name',
+                    'add_drawing',
                     'equipments',
                     'wattage',
                     'quantity'
                 ]
 
+# class RoomImageSerializer(serializers.ModelSerializer):
+    
+#     class Meta:
+#         model = RoomImage
+#         fields = [
+#                     'client_id',
+#                     'add_drawing'
+#                 ]
 
 class SitePhotosSerializer(serializers.ModelSerializer):
 
@@ -78,7 +96,7 @@ class SitePhotosSerializer(serializers.ModelSerializer):
         fields = [
                     'client_id',
                     'name',
-                    'project_name'
+                    'project_name',
                     'fount_of_building',
                     'array',
                     'meter_close_up',
@@ -91,14 +109,32 @@ class SitePhotosSerializer(serializers.ModelSerializer):
                     'proposed_efficiency_upgrade_location'
                 ]
 
-class AddEquipmentSerializer(serializers.ModelSerializer):
+# class SiteImageSerializer(serializers.ModelSerializer):
+    
+#     class Meta:
+#         model = SiteImages
+#         fields = [
+#                     'client_id',
+#                     'fount_of_building',
+#                     'array',
+#                     'meter_close_up',
+#                     'proposed_disconnected_location',
+#                     'south_house',
+#                     'south_yard',
+#                     'electrical_panel_location',
+#                     'electrical_panel_circute_breakers',
+#                     'roof_pitch_proposed_inverter_and_bank_location',
+#                     'proposed_efficiency_upgrade_location'
+#                 ]
+
+class EquipmentSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Add_Equipments_and_working_details
+        model = Equipments_details
         fields = [
                     'client_id',
                     'name',
-                    'project_name'
+                    'project_name',
                     'inverter_mounting_type',
                     'ventilated_room',
                     'dc_cable_run_in_m',
@@ -108,14 +144,14 @@ class AddEquipmentSerializer(serializers.ModelSerializer):
                 ]        
 
 
-class AddElecticalConnectionSerializer(serializers.ModelSerializer):
+class ElecticalSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Add_Electrical_connection_details
+        model = Electrical_details
         fields = [
                     'client_id',
                     'name',
-                    # 'project_name'
+                    'project_name',
                     'Electricity_provider',
                     'sc_no',
                     'capture_connection_no',
@@ -133,14 +169,27 @@ class AddElecticalConnectionSerializer(serializers.ModelSerializer):
                     'roof_to_electrical_room_cable_length_in_m',
                 ] 
 
-class BackupGeneratorSerializer(serializers.ModelSerializer):
+# class ElectricalSerializer(serializers.ModelSerializer):
+    
+#     class Meta:
+#         model = ElectricalImages
+#         fields = [
+#                     'client_id',
+#                     'capture_connection_no',
+#                     'previous_monthly_bills_copy',
+#                     'capture_breaker_space_image',
+#                     'capture_electrical_room',
+#                     'capture_connection_number'
+#                 ]
+
+class BackupSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Add_Backup_Generator_details
+        model = Backup_details
         fields = [
                     'client_id',
-                    'name',
-                    'project_name'
+                    'name',     
+                    'project_name',
                     'is_backup_generate_available',
                     'make',
                     'capacity_in_KVA',
@@ -150,14 +199,14 @@ class BackupGeneratorSerializer(serializers.ModelSerializer):
                     'change_over_switch_rating'
                 ]
 
-class MiscellaneousDetailsSerializer(serializers.ModelSerializer):
+class MiscellaneousSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Miscellaneous_Details
         fields = [
                     'client_id',
                     'name',
-                    'project_name'
+                    'project_name',
                     'earthing_pit_visibility',
                     'details',
                     'easy_access_to_roof',
@@ -173,6 +222,4 @@ class MiscellaneousDetailsSerializer(serializers.ModelSerializer):
                     'availability_of_building_electricion',
                     'details'
                 ]
-
-#-----------------------------------------------------------------------------------------------------------------------------------
 
